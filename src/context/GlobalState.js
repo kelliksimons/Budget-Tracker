@@ -20,8 +20,18 @@ export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState); 
     //The provider component is the one that will be used to wrap the components that need access to the state
     
+    //Actions
+    function deleteTransaction(id) {
+        dispatch({
+            type: 'DELETE_TRANSACTION',
+            payload: id
+        })
+
+    }
+
     return (<GlobalContext.Provider value = {{
-        transactions: state.transactions
+        transactions: state.transactions,
+        deleteTransaction
     }}>
 
         {children}
