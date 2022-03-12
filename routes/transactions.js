@@ -1,6 +1,15 @@
 const express = require('express'); // Express web server framework
 const router = express.Router(); // Express router
+const {getTransactions, addTransaction, deleteTransaction} = require('../controllers/transactionController'); // Import the transactions controller
 
-router.get('/', (req, res) => res.send('Hello')); // GET request to / returns Hello
+router
+.route('/') 
+.get(getTransactions)
+.post(addTransaction); // Add a transaction
+
+router
+    .route('/:id')
+    .delete(deleteTransaction); // Delete a transaction
+
 
 module.exports = router;   // Export the router
